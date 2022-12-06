@@ -1,0 +1,75 @@
+* {
+  box-sizing: border-box;
+}
+
+header {
+  border-bottom: 1px solid black;
+  display: flex;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: flex-end;
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 100%;
+}
+nav p {
+  cursor: pointer;
+  margin: 0 40px 0 0px;
+  text-decoration: underline;
+}
+
+.PageWrapper {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.LoginWrapper {
+  background-color: #eee;
+  font-size: 18px;
+  max-width: 500px;
+  padding: 10px;
+  text-align: center;
+}
+.FormElement {
+  display: grid;
+  grid-template-columns: 10% 30% 50% 10%;
+  grid-template-rows: 1fr 1fr 1fr;
+  width: 100%;
+}
+.FormElement label {
+  justify-self: left;
+  grid-column: 2/3;
+  margin: 5px;
+  padding: 5px;
+}
+.FormElement input {
+  grid-column: 3/4;
+  margin: 5px;
+  padding: 5px;
+}
+.FormElement button {
+  border-radius: 10px;
+  background-color: cadetblue;
+  font-size: 18px;
+  grid-column: 1/5;
+  justify-self: center;
+  margin: 5px;
+  width: 50%;
+}
+.PagePostsWrapper {
+  display: grid;
+  column-gap: 25px;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  row-gap: 25px;
+}
+.PagePost {
+  border: 1px solid #aaaaaa;
+  border-radius: 10px;
+  max-width: 500px;
+  padding: 10px 25px;
+  width: 100%;
+}

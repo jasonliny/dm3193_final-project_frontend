@@ -13,6 +13,7 @@ import FrontPage from "./pages/FrontPage";
 import LoginPage from "./pages/Login";
 import UserProfilePage from "./pages/UserProfile";
 import FindUsersPage from "./pages/FindUsers";
+import UserFeed from "./pages/UserFeed";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA8-Hp-IkbvYZmmQ0vQZWqwYFmEjfRioB0",
@@ -88,9 +89,9 @@ function App() {
       ),
     },
     {
-      path: "/find-users",
+      path: "/feed",
       element: (
-        <FindUsersPage
+        <UserFeed
           isLoading={isLoading}
           isLoggedIn={isLoggedIn}
           userInformation={userInformation}
@@ -110,7 +111,7 @@ function App() {
       ),
     },
     {
-      path: "/create",
+      path: "/register",
       element: (
         <CreateUserPage
           isLoggedIn={isLoggedIn}

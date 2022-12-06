@@ -8,11 +8,11 @@ function FrontPage({
   setIsLoggedIn,
   setUserInformation,
 }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!isLoggedIn || isLoading) navigate("/login");
-  }, [isLoading, isLoggedIn, navigate]);
+  // useEffect(() => {
+  //   if (!isLoggedIn || isLoading) navigate("/login");
+  // }, [isLoading, isLoggedIn, navigate]);
 
   return (
     <>

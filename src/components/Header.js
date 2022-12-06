@@ -15,7 +15,7 @@ function Header({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
   return (
     <header>
       <nav>
-        {isLoggedIn && (
+        {!isLoggedIn && (
           <Link to="/">
             <p>Home</p>
           </Link>
@@ -26,9 +26,19 @@ function Header({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
           </Link>
         )}
         {!isLoggedIn && (
-          <Link to="/create">
+          <Link to="/register">
             <p>Create User</p>
           </Link>
+        )}
+        {isLoggedIn && (
+          <p>
+            <Link to="/feed">Feed</Link>
+          </p>
+        )}
+        {isLoggedIn && (
+          <p>
+            <Link to="/user/0">Profile</Link>
+          </p>
         )}
         {isLoggedIn && <p onClick={() => logout()}>Log Out</p>}
       </nav>
