@@ -9,11 +9,10 @@ import "./App.css";
 
 import CreateUserPage from "./pages/CreateUser";
 import CreatePostPage from "./pages/CreatePost";
-import FrontPage from "./pages/FrontPage";
 import LoginPage from "./pages/Login";
 import UserProfilePage from "./pages/UserProfile";
-import FindUsersPage from "./pages/FindUsers";
 import UserFeed from "./pages/UserFeed";
+import UserPostsPage from "./pages/UserPosts";
 
 const firebaseConfig = {
   apiKey: "AIzaSyA8-Hp-IkbvYZmmQ0vQZWqwYFmEjfRioB0",
@@ -25,14 +24,14 @@ const firebaseConfig = {
 };
 
 function App() {
-  const [appInitialized, setAppInitialized] = useState(false);
+  const [appInitialized, setAppInitialized] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userInformation, setUserInformation] = useState({});
 
   useEffect(() => {
-    initializeApp(firebaseConfig);
-    setAppInitialized(true);
+    const app = initializeApp(firebaseConfig);
+    setAppInitialized(app);
   }, []);
 
   useEffect(() => {
@@ -55,7 +54,8 @@ function App() {
     {
       path: "/",
       element: (
-        <FrontPage
+        <UserFeed
+          app={appInitialized}
           isLoading={isLoading}
           isLoggedIn={isLoggedIn}
           userInformation={userInformation}
@@ -67,7 +67,21 @@ function App() {
     {
       path: "/user/:id",
       element: (
+        <UserPostsPage
+          app={appInitialized}
+          isLoading={isLoading}
+          isLoggedIn={isLoggedIn}
+          userInformation={userInformation}
+          setIsLoggedIn={setIsLoggedIn}
+          setUserInformation={setUserInformation}
+        />
+      ),
+    },
+    {
+      path: "/user/profile",
+      element: (
         <UserProfilePage
+          app={appInitialized}
           isLoading={isLoading}
           isLoggedIn={isLoggedIn}
           userInformation={userInformation}
@@ -80,26 +94,16 @@ function App() {
       path: "/create",
       element: (
         <CreatePostPage
+          app={appInitialized}
           isLoading={isLoading}
           isLoggedIn={isLoggedIn}
-          userInformation={userInformation}
           setIsLoggedIn={setIsLoggedIn}
           setUserInformation={setUserInformation}
+          userInformation={userInformation}
         />
       ),
     },
-    {
-      path: "/feed",
-      element: (
-        <UserFeed
-          isLoading={isLoading}
-          isLoggedIn={isLoggedIn}
-          userInformation={userInformation}
-          setIsLoggedIn={setIsLoggedIn}
-          setUserInformation={setUserInformation}
-        />
-      ),
-    },
+
     {
       path: "/login",
       element: (

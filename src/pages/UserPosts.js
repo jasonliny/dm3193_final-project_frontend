@@ -1,21 +1,23 @@
+import { collection, getDocs, getFirestore } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { getFirestore, collection, getDocs } from "firebase/firestore";
+import { useNavigate, useParams } from "react-router";
 import Header from "../components/Header";
 import PagePost from "../components/PagePost";
 
-const queryData = async (app) => {
+const queryData = async (app, uid) => {
   if (!app) return [];
   const db = getFirestore(app);
   const querySnapshot = await getDocs(collection(db, "posts"));
   const data = [];
   querySnapshot.forEach((doc) => {
-    data.push(doc.data());
+    if (doc.data().userId === uid) {
+      data.push(doc.data());
+    }
   });
   return data;
 };
 
-function UserFeed({
+function UserPostsPage({
   app,
   isLoading,
   isLoggedIn,
@@ -24,6 +26,7 @@ function UserFeed({
 }) {
   const navigate = useNavigate();
   const [postData, setPostData] = useState([]);
+  const uid = useParams().id;
 
   useEffect(() => {
     if (!isLoggedIn && !isLoading) navigate("/login");
@@ -31,8 +34,8 @@ function UserFeed({
 
   useEffect(() => {
     if (!app) return;
-    queryData(app).then(setPostData);
-  }, [app]);
+    queryData(app, uid).then(setPostData);
+  }, [app, uid]);
 
   return (
     <>
@@ -42,7 +45,8 @@ function UserFeed({
         setUserInformation={setUserInformation}
       />
       <div className="PageWrapper">
-        <h1>Feed</h1>
+        <h1>UID: {uid}</h1>
+        <h2>Posts</h2>
         <div className="PagePostsWrapper">
           {postData.map((post, index) => (
             <PagePost
@@ -59,4 +63,4 @@ function UserFeed({
     </>
   );
 }
-export default UserFeed;
+export default UserPostsPage;

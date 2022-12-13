@@ -14,7 +14,7 @@ function CreateUserPage({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isLoggedIn) navigate("/user/0");
+    if (isLoggedIn) navigate("/user/profile");
   }, [isLoggedIn, navigate]);
 
   const signUpUser = useCallback(
@@ -32,8 +32,8 @@ function CreateUserPage({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
         .then((userCredential) => {
           const user = userCredential.user;
           setIsLoggedIn(true);
-
           setErrors();
+
           updateProfile(user, { displayName: username })
             .then(() => {
               setUserInformation({
@@ -67,14 +67,16 @@ function CreateUserPage({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
         setIsLoggedIn={setIsLoggedIn}
         setUserInformation={setUserInformation}
       />
-      <div className="PageWrapper LoginWrapper">
-        <h1>Create User</h1>
-        <CreateUserForm signUpUser={signUpUser} />
-        <p>{errors}</p>
-        <p>Already have an account?</p>
-        <p>
-          <Link to="/login">Login</Link>
-        </p>
+      <div className="PageWrapper">
+        <div className="LoginWrapper">
+          <h1>Create Account</h1>
+          <CreateUserForm signUpUser={signUpUser} />
+          <p>{errors}</p>
+          <p>Already have an account?</p>
+          <p>
+            <Link to="/login">Login</Link>
+          </p>
+        </div>
       </div>
     </>
   );

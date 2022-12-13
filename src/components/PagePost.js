@@ -1,16 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function PagePost({ descript, pageURL, poster, title }) {
+function PagePost({ descript, pageUrl, title, userId, userName }) {
   return (
     <div className="PagePost">
-      <h1>{title}</h1>
-      <a href="" className="PagePostURL">
-        {pageURL}
-      </a>
-      <p className="PagePostDescription">{descript}</p>
+      <h1>
+        <a href={pageUrl}>{title}</a>
+      </h1>
       <p>
-        Shared By: <Link to="">{poster}</Link>
+        <a href={pageUrl}>{pageUrl}</a>
+      </p>
+      <p className="PagePostDescription">{descript}</p>
+      <p className="userInfo">
+        Shared By: <Link to={`/user/${userId}`}>{userName}</Link>
       </p>
     </div>
   );
