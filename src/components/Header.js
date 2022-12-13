@@ -15,7 +15,7 @@ function Header({ isLoggedIn, setIsLoggedIn, setUserInformation }) {
   return (
     <header>
       <nav>
-        <span className="header-sitename">PageMark</span>
+        <span className="header-sitename">WebMark</span>
         {!isLoggedIn && (
           <p>
             <Link to="/login">Login</Link>
