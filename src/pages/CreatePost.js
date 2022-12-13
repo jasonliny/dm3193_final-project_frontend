@@ -55,6 +55,7 @@ function CreatePostPage({
         setUserInformation={setUserInformation}
       />
       <div className="PageWrapper CreatePostWrapper">
+        <h1>Create Post</h1>
         <CreatePostForm createPost={createPost} />
         {postSuccessful && <p>Post Submitted!</p>}
       </div>
